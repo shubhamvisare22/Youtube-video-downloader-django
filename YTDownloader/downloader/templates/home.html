@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>YouTube Downloader</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <body>
+        <div class="container centered-form">
+            <div class="row w-100">
+                <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                    <h1 class="text-center mb-4">YouTube Downloader</h1>
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="DownloadSingleForm" action="{% url 'download' %}" method="post" novalidate>
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="link">Download Single or Multiple Videos</label>
+                                    <input type="text" name="link" class="form-control" id="link"
+                                        placeholder="Enter YouTube links, separated by commas" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resolution">Select Resolution</label>
+                                    <select id="resolution" class="form-control" required>
+                                        <option value="240p">240p</option>
+                                        <option value="360p">360p</option>
+                                        <option value="480p">480p</option>
+                                        <option value="720p">720p</option>
+                                        <option value="1080p">1080p</option>
+                                    </select>
+                                </div>
+                                <button type="submit" id="to_download" class="btn btn-primary btn-block">Download
+                                    Video(s)</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay" id="loaderOverlay">
+            <div class="overlay-content">
+                <div class="loader" id="loader"></div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+        <script src="{% static 'js/main.js' %}"></script>
+
+
+    </body>
+
+</html>
